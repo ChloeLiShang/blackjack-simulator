@@ -1,0 +1,32 @@
+div {
+  margin-top: 10%;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.adjustor {
+  text-align: center;
+  margin: 0 0 40px 0;
+}
+
+.adjustor button {
+  margin: 0 10px;
+  font-size: 28px;
+}
+
+mat-form-field {
+  width: 250px;
+  padding-bottom: 0;
+}

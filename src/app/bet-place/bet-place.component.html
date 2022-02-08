@@ -1,0 +1,20 @@
+<!-- <div>
+    <label for="betAmount">Place your bet: </label>
+    <input type="number" min="1" max="50" id="betAmount" [(ngModel)]="bet">
+</div> -->
+
+
+<div>
+    <mat-form-field appearance="standard">
+        <mat-label>Place your bet</mat-label>
+        <input matInput type="number" min="1" max="50" id="betAmount2" [(ngModel)]="bet" required>
+        <button mat-stroked-button matSuffix color="primary" (click)="onMax()">MAX</button>
+    </mat-form-field>
+    <div class="adjustor">
+        <button mat-icon-button (click)="minusTen()" [disabled]="bet < (MIN_BET + 10)">&laquo;</button>
+        <button mat-icon-button (click)="minusOne()" [disabled]="bet < (MIN_BET + 1)">&#8249;</button>
+        <button mat-icon-button (click)="plusOne()" [disabled]="bet > (MAX_BET - 1)">&#8250;</button>
+        <button mat-icon-button (click)="plusTen()" [disabled]="bet > (MAX_BET - 10)">&raquo;</button>
+    </div>
+    <button mat-raised-button color="accent" [disabled]="!bet || bet > 50 || bet < 1" (click)="onConfirm()">confirm</button>
+</div>

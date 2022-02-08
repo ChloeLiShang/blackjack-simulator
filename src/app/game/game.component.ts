@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
+  betPlaced = false;
+
+  bet?: number;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onBetPlaced(bet: number) {
+    this.betPlaced = true;
+    this.bet = bet;
   }
 
 }
