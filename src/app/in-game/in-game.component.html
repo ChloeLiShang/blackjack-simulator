@@ -1,1 +1,41 @@
-<p>in-game works!</p>
+<mat-grid-list cols="6" rowHeight="6:1">
+    <mat-grid-tile [colspan]="6" [rowspan]="3">Dealer</mat-grid-tile>
+
+    <mat-grid-tile [colspan]="6" [rowspan]="5">
+        <div class='internalMatGrid' >
+            <mat-grid-list cols="6" rowHeight="6:1">
+                <mat-grid-tile [colspan]="6" [rowspan]="4">
+                    <img mat-card-image *ngFor="let card of dealerCards" src="{{card.img}}" alt="card" height="112px" width="80px">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="6" [rowspan]="2">
+                    <p>{{dealerMessage}}</p>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="6" [rowspan]="5">
+        <div class='internalMatGrid' >
+            <mat-grid-list cols="6" rowHeight="6:1">
+                <mat-grid-tile [colspan]="6" [rowspan]="4">
+                    <img mat-card-image *ngFor="let card of playerCards" src="{{card.img}}" alt="card" height="112px" width="80px">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="6" [rowspan]="2">
+                    <p>{{playerMessage}}</p>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="3">
+        <div class='internalMatGrid' >
+            <mat-grid-list cols="6" rowHeight="6:1">
+              <mat-grid-tile [colspan]="6" [rowspan]="4">1</mat-grid-tile>
+              <mat-grid-tile [colspan]="6" [rowspan]="2">2</mat-grid-tile>
+            </mat-grid-list>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="2" [rowspan]="3">Player</mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="3">6</mat-grid-tile>
+</mat-grid-list>
