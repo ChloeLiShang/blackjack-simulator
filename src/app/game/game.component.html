@@ -1,8 +1,3 @@
-<p>game works!</p>
-<p *ngIf="bet">bet placed: {{bet}}</p>
-
-<p>Points: {{playerPoints}}</p>
-
 <div *ngIf="!betPlaced">
     <app-bet-place (placeBet)="onBetPlaced($event)"></app-bet-place>
 </div>
@@ -10,3 +5,8 @@
 <div *ngIf="betPlaced">
     <app-in-game></app-in-game>
 </div>
+
+<p>game works!</p>
+<p *ngIf="bet">bet placed: {{bet}}</p>
+
+<p>Points: {{playerPoints}}</p>

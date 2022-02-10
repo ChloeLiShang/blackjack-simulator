@@ -31,7 +31,8 @@ export class InGameComponent implements OnInit {
   playerMessage = '';
 
   movesAvailable = false;
-  bust = false;
+  playerBust = false;
+  dealerBust = false;
 
   constructor() { }
 
@@ -87,9 +88,9 @@ export class InGameComponent implements OnInit {
     } else if (this.playerValue > 21) {
       this.playerMessage = "You've gone bust";
       this.movesAvailable = false;
-      this.bust = true;
+      this.playerBust = true;
       // dealer should continue to deal his card?
-      await this.sleep(1500);
+      await this.sleep(1800);
       this.dealerTurn();
       this.end();
     } else {
@@ -99,7 +100,7 @@ export class InGameComponent implements OnInit {
 
   async stand(): Promise<void> {
     this.movesAvailable = false;
-    await this.sleep(1500);
+    await this.sleep(1100);
     this.dealerTurn();
   }
 
@@ -110,9 +111,15 @@ export class InGameComponent implements OnInit {
       this.dealerValue = this.calculateValue(this.dealerCards);
       this.dealerMessage = `Dealer has ${this.dealerValue}`;
       while (this.dealerValue < 17) {
+        await this.sleep(500);
         this.dealerCards.push(await this.deal());
         this.dealerValue = this.calculateValue(this.dealerCards);
-        this.dealerMessage = `Dealer has ${this.dealerValue}`;
+        if (this.dealerValue > 21) {
+          this.dealerMessage = "Dealer has gone bust";
+          this.dealerBust = true;
+        } else {
+          this.dealerMessage = `Dealer has ${this.dealerValue}`;
+        }
       }
       // TODO: show game result
     }
@@ -133,7 +140,7 @@ export class InGameComponent implements OnInit {
       // deal the second card for dealer
       this.hiddenCard = await this.deal();
       this.dealerCards.push(this.cardBack);
-      await this.sleep(1000);
+      await this.sleep(800);
 
       // only check for dealer blackjack if shown card has 10 or ACE
       if (this.dealerCards[0].value === 10 || this.dealerCards[0].value === 1) {
