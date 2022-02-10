@@ -1,6 +1,7 @@
-<mat-grid-list cols="6" rowHeight="6:1">
+<mat-grid-list cols="6" rowHeight="6:1" gutterSize="0">
     <mat-grid-tile [colspan]="6" [rowspan]="3">Dealer</mat-grid-tile>
 
+    <!-- shows dealer cards -->
     <mat-grid-tile [colspan]="6" [rowspan]="5">
         <div class='internalMatGrid' >
             <mat-grid-list cols="6" rowHeight="6:1">
@@ -14,17 +15,26 @@
         </div>
     </mat-grid-tile>
 
+    <!-- shows player cards -->
     <mat-grid-tile [colspan]="6" [rowspan]="5">
         <div class='internalMatGrid' >
             <mat-grid-list cols="6" rowHeight="6:1">
                 <mat-grid-tile [colspan]="6" [rowspan]="4">
-                    <img mat-card-image *ngFor="let card of playerCards" src="{{card.img}}" alt="card" height="112px" width="80px">
+                    <img mat-card-image *ngFor="let card of playerCards"
+                    src="{{card.img}}" alt="card" height="112px" width="80px">
+                    <div class="moves" [hidden]="!movesAvailable">
+                        <button mat-raised-button (click)="hit()">hit</button>
+                        <button mat-raised-button (click)="stand()">stand</button>
+                    </div>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="6" [rowspan]="2">
                     <p>{{playerMessage}}</p>
                 </mat-grid-tile>
+                
             </mat-grid-list>
         </div>
+        
+        
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="2" [rowspan]="3">

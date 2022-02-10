@@ -1,5 +1,5 @@
 mat-grid-tile {
-  background: lightblue;
+  background: #fafafa;
 }
 
 img {
@@ -10,4 +10,17 @@ img {
 .internalMatGrid {
   /* border: 1px solid red; */
   min-width: 80%;
+}
+
+.moves {
+  margin-left: 70%;
+  position: absolute;
+}
+
+.moves button {
+  background-color: #4db6ac;
+  color: #fafafa;
+  display: block;
+  margin: 20px 0;
+  width: -webkit-fill-available;
 }
