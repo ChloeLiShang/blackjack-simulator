@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 
 import { Card } from '../card';
@@ -10,6 +10,9 @@ import { DECK } from '../deck';
   styleUrls: ['./in-game.component.css']
 })
 export class InGameComponent implements OnInit {
+
+  @Input() betPlaced!: number;
+  @Input() playerPoints!: number;
 
   deck = DECK;
 
@@ -29,8 +32,13 @@ export class InGameComponent implements OnInit {
 
   dealerMessage = '';
   playerMessage = '';
+  gameResult = '';
 
   movesAvailable = false;
+  goNext = false;
+
+  playerBlackjack = false;
+  dealerBlackjack = false;
   playerBust = false;
   dealerBust = false;
 
@@ -73,7 +81,26 @@ export class InGameComponent implements OnInit {
   }
 
   end(): void {
-
+    // determine game result
+    if (this.playerBlackjack) {
+      this.gameResult = "Player has blackjack";
+    } else if (this.dealerBlackjack) {
+      this.gameResult = "Dealer has blackjack";
+    } else if (this.playerBust) {
+      this.gameResult = "Player has gone bust";
+    } else if (this.dealerBust) {
+      this.gameResult = "Player wins";
+    } else {
+      // compare hands
+      if (this.playerValue > this.dealerValue) {
+        this.gameResult = "Player wins";
+      } else if (this.playerValue < this.dealerValue) {
+        this.gameResult = "Dealer wins";
+      } else {
+        this.gameResult = "The hand is a push";
+      }
+    }
+    this.goNext = true;
   }
 
   async hit(): Promise<void> {
@@ -122,6 +149,7 @@ export class InGameComponent implements OnInit {
         }
       }
       // TODO: show game result
+      this.end();
     }
   }
 
@@ -131,6 +159,7 @@ export class InGameComponent implements OnInit {
     this.playerValue = this.calculateValue(this.playerCards);
     if (this.playerValue === 21) {
       this.playerMessage = 'You got blakcjack!';
+      this.playerBlackjack = true;
       // TODO: END GAME
       this.end();
     }
@@ -150,6 +179,7 @@ export class InGameComponent implements OnInit {
         this.dealerValue = this.calculateValue(this.dealerCards.concat([this.hiddenCard]));
         if (this.dealerValue === 21) {
           this.dealerMessage = 'Dealer got blackjack';
+          this.dealerBlackjack = true;
           // show hidden card
           this.dealerCards.splice(1,1, this.hiddenCard);
           // TODO: END GAME

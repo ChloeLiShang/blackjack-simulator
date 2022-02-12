@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="betPlaced">
-    <app-in-game></app-in-game>
+    <app-in-game [betPlaced]="bet" [playerPoints]="playerPoints"></app-in-game>
 </div>
 
 <p>game works!</p>

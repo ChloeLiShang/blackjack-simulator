@@ -47,5 +47,13 @@
     </mat-grid-tile>
 
     <mat-grid-tile [colspan]="2" [rowspan]="3">Player</mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="3">6</mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="3">
+        <p>Your bet: {{betPlaced}}</p>
+        <p>Points: {{playerPoints}}</p>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="6" [rowspan]="1">{{gameResult}}</mat-grid-tile>
+    <mat-grid-tile [colspan]="6" [rowspan]="2">
+        <p [hidden]="!goNext"><button mat-raised-button color="accent">continue</button></p>
+    </mat-grid-tile>
 </mat-grid-list>
