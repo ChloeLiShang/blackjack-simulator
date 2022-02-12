@@ -11,7 +11,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
 
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +36,6 @@ import { InGameComponent } from './in-game/in-game.component';
     MatInputModule,
     MatIconModule,
     MatGridListModule,
-    MatCardModule,
     AppRoutingModule
   ],
   providers: [],

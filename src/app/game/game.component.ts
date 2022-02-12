@@ -29,6 +29,14 @@ export class GameComponent implements OnInit {
     this.pointsService.updatePoints(this.playerPoints);
   }
 
+  onUpdate(pointsEarned: number) {
+    this.playerPoints += pointsEarned;
+    this.pointsService.updatePoints(this.playerPoints);
+    // start a new round
+    this.betPlaced = false;
+    this.bet = 0;
+  }
+
   getPoints(): void {
     this.pointsService.getPoints()
       .subscribe(points => this.playerPoints = points);

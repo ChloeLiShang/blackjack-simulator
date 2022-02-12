@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router'; 
 
 
 import { Card } from '../card';
@@ -11,10 +12,17 @@ import { DECK } from '../deck';
 })
 export class InGameComponent implements OnInit {
 
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.play();
+  }
+
   @Input() betPlaced!: number;
   @Input() playerPoints!: number;
+  @Output() update = new EventEmitter();
 
-  deck = DECK;
+  deck = DECK.slice(); // create a shallow copy
 
   cardBack: Card = {
     name: 'back',
@@ -29,6 +37,8 @@ export class InGameComponent implements OnInit {
 
   dealerValue = 0;
   playerValue = 0;
+  pointsEarned = 0; // points player earned in this game
+
 
   dealerMessage = '';
   playerMessage = '';
@@ -42,11 +52,6 @@ export class InGameComponent implements OnInit {
   playerBust = false;
   dealerBust = false;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.play();
-  }
 
   // deal one card
   async deal(): Promise<Card> {
@@ -84,20 +89,24 @@ export class InGameComponent implements OnInit {
     // determine game result
     if (this.playerBlackjack) {
       this.gameResult = "Player has blackjack";
+      this.pointsEarned = 2.5*this.betPlaced;
     } else if (this.dealerBlackjack) {
       this.gameResult = "Dealer has blackjack";
     } else if (this.playerBust) {
       this.gameResult = "Player has gone bust";
     } else if (this.dealerBust) {
       this.gameResult = "Player wins";
+      this.pointsEarned = 2*this.betPlaced;
     } else {
       // compare hands
       if (this.playerValue > this.dealerValue) {
         this.gameResult = "Player wins";
+        this.pointsEarned = 2*this.betPlaced;
       } else if (this.playerValue < this.dealerValue) {
         this.gameResult = "Dealer wins";
       } else {
         this.gameResult = "The hand is a push";
+        this.pointsEarned = this.betPlaced;
       }
     }
     this.goNext = true;
@@ -196,6 +205,10 @@ export class InGameComponent implements OnInit {
         this.movesAvailable = true;
       }
     }
+  }
+
+  onContinue() {
+    this.update.emit(this.pointsEarned);
   }
 
   sleep(ms: number) {

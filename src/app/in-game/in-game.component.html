@@ -1,15 +1,15 @@
 <mat-grid-list cols="6" rowHeight="6:1" gutterSize="0">
-    <mat-grid-tile [colspan]="6" [rowspan]="3">Dealer</mat-grid-tile>
+    <mat-grid-tile class="title" [colspan]="6" [rowspan]="2">Dealer</mat-grid-tile>
 
     <!-- shows dealer cards -->
     <mat-grid-tile [colspan]="6" [rowspan]="5">
         <div class='internalMatGrid' >
             <mat-grid-list cols="6" rowHeight="6:1">
                 <mat-grid-tile [colspan]="6" [rowspan]="4">
-                    <img mat-card-image *ngFor="let card of dealerCards" src="{{card.img}}" alt="card" height="112px" width="80px">
+                    <img *ngFor="let card of dealerCards" src="{{card.img}}" alt="card" height="112px" width="80px">
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="6" [rowspan]="2">
-                    <p>{{dealerMessage}}</p>
+                    <p class="message">{{dealerMessage}}</p>
                 </mat-grid-tile>
             </mat-grid-list>
         </div>
@@ -20,7 +20,7 @@
         <div class='internalMatGrid' >
             <mat-grid-list cols="6" rowHeight="6:1">
                 <mat-grid-tile [colspan]="6" [rowspan]="4">
-                    <img mat-card-image *ngFor="let card of playerCards"
+                    <img *ngFor="let card of playerCards"
                     src="{{card.img}}" alt="card" height="112px" width="80px">
                     <div class="moves" [hidden]="!movesAvailable">
                         <button mat-raised-button (click)="hit()">hit</button>
@@ -28,7 +28,7 @@
                     </div>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="6" [rowspan]="2">
-                    <p>{{playerMessage}}</p>
+                    <p class="message">{{playerMessage}}</p>
                 </mat-grid-tile>
                 
             </mat-grid-list>
@@ -37,23 +37,21 @@
         
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="3">
-        <div class='internalMatGrid' >
-            <mat-grid-list cols="6" rowHeight="6:1">
-              <mat-grid-tile [colspan]="6" [rowspan]="4">1</mat-grid-tile>
-              <mat-grid-tile [colspan]="6" [rowspan]="2">2</mat-grid-tile>
-            </mat-grid-list>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+    </mat-grid-tile>
+
+    <mat-grid-tile class="title" [colspan]="2" [rowspan]="2">Player</mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <div>
+            <p>Your bet: {{betPlaced}}</p>
+            <p>Points: {{playerPoints}}</p>
         </div>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" [rowspan]="3">Player</mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="3">
-        <p>Your bet: {{betPlaced}}</p>
-        <p>Points: {{playerPoints}}</p>
+    <mat-grid-tile [colspan]="6" [rowspan]="1">
+        <p class="message">{{gameResult}}</p>
     </mat-grid-tile>
-
-    <mat-grid-tile [colspan]="6" [rowspan]="1">{{gameResult}}</mat-grid-tile>
     <mat-grid-tile [colspan]="6" [rowspan]="2">
-        <p [hidden]="!goNext"><button mat-raised-button color="accent">continue</button></p>
+        <p [hidden]="!goNext"><button mat-raised-button color="accent" (click)="onContinue()">continue</button></p>
     </mat-grid-tile>
 </mat-grid-list>
