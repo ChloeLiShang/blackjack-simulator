@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { GameComponent } from './game/game.component';
 import { BetPlaceComponent } from './bet-place/bet-place.component';
 import { InGameComponent } from './in-game/in-game.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InGameComponent } from './in-game/in-game.component';
     HomeComponent,
     GameComponent,
     BetPlaceComponent,
-    InGameComponent
+    InGameComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
