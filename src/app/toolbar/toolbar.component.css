@@ -10,3 +10,16 @@
   border-radius: 14px;
   padding: 5px;
 }
+
+.reset {
+  font-size: 24px;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 14px;
+  padding: 5px;
+  margin: 0 10px;
+}
+
+.reset:hover {
+  background-color: #303f9f;
+}

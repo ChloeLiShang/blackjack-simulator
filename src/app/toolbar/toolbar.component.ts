@@ -13,4 +13,8 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onReset() {
+    this.pointsService.updatePoints(200);
+  }
+
 }
