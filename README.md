@@ -1,5 +1,9 @@
 # BlackjackSimulator
 
+I was playing GTA5 online the other day. My friends and I were at its casino playing blackjack. I noticed the high likelihood of getting 10s at the table. I kept wondering if the developers coded the game in a way that cards of 10 are more likely to be dealt. I was also learning Angular so I figured I could make a blackjack simulator project to practice Angular and to see if my simulator also deals 10s a lot.
+
+There you have it. The project is deployed on Github Pages: https://chloelishang.github.io/blackjack-simulator/home
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
 ## Development server
