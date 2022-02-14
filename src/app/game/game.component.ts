@@ -25,7 +25,8 @@ export class GameComponent implements OnInit {
   onBetPlaced(bet: number) {
     this.betPlaced = true;
     this.bet = bet;
-    this.playerPoints -= this.bet;
+    this.pointsService.getPoints()
+      .subscribe(points => this.playerPoints = points - this.bet);
     this.pointsService.updatePoints(this.playerPoints);
   }
 

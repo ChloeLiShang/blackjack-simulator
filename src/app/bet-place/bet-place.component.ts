@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PointsService } from '../points.service';
 
 @Component({
   selector: 'app-bet-place',
@@ -10,17 +11,18 @@ export class BetPlaceComponent implements OnInit {
   MAX_BET = 50;
   MIN_BET = 1;
 
-  bet = this.MIN_BET;
+  bet = 0;
+
 
   @Output() placeBet = new EventEmitter();
 
-  constructor() { }
+  constructor(public pointsService: PointsService) { }
 
   ngOnInit(): void {
   }
 
   onMax() {
-    this.bet = this.MAX_BET;
+    this.bet = Math.min(this.MAX_BET, this.pointsService.playerPoints);
   }
 
   onConfirm() {

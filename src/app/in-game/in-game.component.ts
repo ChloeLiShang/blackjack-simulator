@@ -128,7 +128,7 @@ export class InGameComponent implements OnInit {
       // dealer should continue to deal his card?
       await this.sleep(1800);
       this.dealerTurn();
-      this.end();
+      // this.end();
     } else {
       this.playerMessage = `You have ${this.playerValue}`;
     }

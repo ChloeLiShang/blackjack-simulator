@@ -16,5 +16,5 @@
         <button mat-icon-button (click)="plusOne()" [disabled]="bet > (MAX_BET - 1)">&#8250;</button>
         <button mat-icon-button (click)="plusTen()" [disabled]="bet > (MAX_BET - 10)">&raquo;</button>
     </div>
-    <button mat-raised-button color="accent" [disabled]="!bet || bet > 50 || bet < 1" (click)="onConfirm()">confirm</button>
+    <button mat-raised-button color="accent" [disabled]="!bet || bet > 50 || bet < 1 || bet > pointsService.playerPoints" (click)="onConfirm()">confirm</button>
 </div>
